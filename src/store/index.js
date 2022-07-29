@@ -52,6 +52,9 @@ export default createStore({
     CURRENT_WEATHER(state, payload) {
       state.currentWeather = payload
     },
+    ACTIVE_WEATHER(state, payload) {
+      state.activeWeather = payload
+    },
     IS_LOAD(state, payload) {
       state.isLoad = payload
     },

@@ -35,6 +35,10 @@ export default {
 
     this.$store.dispatch("loadWeatherInfoDaily", coord)
   },
+  beforeUnmount() {
+    this.$store.commit("CURRENT_WEATHER", {})
+    this.$store.commit("WEATHER_INFO_DAILY", [])
+  },
   methods: {
     formatDate(dt, options) {
       return formatWeekly(dt, options)

@@ -50,9 +50,12 @@ export default {
       return formatWeekly(this.item.dt, { day: "2-digit", month: "short" })
     },
   },
+  beforeUnmount() {
+    this.$store.commit("ACTIVE_WEATHER", {})
+  },
   methods: {
     showHandler() {
-      console.log(this.item)
+      this.$store.commit("ACTIVE_WEATHER", this.item)
     },
   },
 }

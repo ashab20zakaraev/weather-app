@@ -3,7 +3,7 @@
 
   background-color: rgba($blue, 0.25);
 
-  border-radius: 1rem;
+  border-radius: 0.8rem;
   padding: 1.1rem;
 
   transition: box-shadow 0.2s ease-in-out;
@@ -118,15 +118,15 @@
     display: block;
 
     position: absolute;
-    top: 0rem;
+    top: -0.3rem;
     left: 2.5rem;
     z-index: 1;
 
     background: url("@/assets/images/icons/arrow-green.png") center no-repeat;
     background-size: cover;
 
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
 
     transform: rotate(-90deg);
     transition: top 0.2s linear;
