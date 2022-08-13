@@ -8,7 +8,7 @@
     </router-link>
 
     <div class="header__actions">
-      <button class="btn__theme" @click="themeHandler">
+      <button class="btn__theme" @click="dashboard">
         <img src="@/assets/images/logo/theme.svg" alt="" />
       </button>
 
@@ -64,6 +64,11 @@ export default {
     },
     themeHandler() {
       console.log("changeTheme")
+    },
+    dashboard() {
+      return this.$router.push({
+        name: "dashboard",
+      })
     },
   },
 }
