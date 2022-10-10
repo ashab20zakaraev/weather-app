@@ -24,8 +24,6 @@
 
   @include breakpoint($extra-pc) {
     width: 100%;
-
-    margin-bottom: 3rem;
   }
 
   &--posrelative {
