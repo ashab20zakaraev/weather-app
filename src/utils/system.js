@@ -31,6 +31,14 @@ function averageValue(obj) {
   return avValue
 }
 
+function isEmptyObject(obj) {
+  if (Object.keys(obj).length === 0) {
+    return true
+  }
+
+  return false
+}
+
 function formatWeekly(dt, options) {
   const today = new Date().getDate()
   const date = new Date(dt * 1000).getDate()
@@ -47,10 +55,9 @@ function formatWeekly(dt, options) {
   return new Date(dt * 1000).toLocaleString("ru-RU", options)
 }
 
-function generateURLIcon(item = {}) {
+function generateURLIcon(item = { weather: [{ icon: "" }] }) {
   const { icon } = item.weather[0]
-
   return require(`@/assets/images/icons/${icons[icon]}.svg`)
 }
 
-export { init, averageValue, formatWeekly, generateURLIcon }
+export { init, averageValue, formatWeekly, generateURLIcon, isEmptyObject }

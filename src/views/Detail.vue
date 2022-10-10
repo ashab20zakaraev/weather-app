@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div class="weather__block weather__block--blue df">
+    <div class="weather__block weather__hours-list weather__block--blue">
       <weather-detail-hour v-for="item in hourly" :key="item.dt" :item="item" />
     </div>
 

@@ -20,7 +20,6 @@
 
 <script>
 import { formatWeekly, generateURLIcon } from "@/utils/system.js"
-import { translete } from "@/utils/constants.js"
 
 import Preloader from "@/components/preloader/Preloader"
 
