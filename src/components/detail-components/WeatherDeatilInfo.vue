@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { formatWeekly } from "@/utils/system.js"
+import { formatWeekly, generateURLIcon } from "@/utils/system.js"
 
 export default {
   name: "Weather Detail Info",
@@ -53,7 +53,7 @@ export default {
       return this.currentWeather.weather[0].description
     },
     icon() {
-      return `http://openweathermap.org/img/wn/${this.currentWeather.weather[0].icon}@2x.png`
+      return generateURLIcon(this.currentWeather)
     },
     temp() {
       return Math.floor(this.currentWeather.temp)

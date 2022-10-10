@@ -8,9 +8,9 @@ export default createStore({
     weathers: JSON.parse(localStorage.getItem(LOCAL_KEY) || "[]"),
     error: "",
     weatherInfoDaily: [],
-    activeWeather: {},
+    weatherHourlyInfo: [],
     currentWeather: {},
-    isLoad: false,
+    isLoad: true,
   },
   getters: {
     getWeathers(state) {
@@ -52,8 +52,8 @@ export default createStore({
     CURRENT_WEATHER(state, payload) {
       state.currentWeather = payload
     },
-    ACTIVE_WEATHER(state, payload) {
-      state.activeWeather = payload
+    HOURLY_INFO(state, payload) {
+      state.weatherHourlyInfo = payload
     },
     IS_LOAD(state, payload) {
       state.isLoad = payload
@@ -61,8 +61,8 @@ export default createStore({
   },
   actions: {
     async loadWeather({ commit }, payload) {
+      commit("IS_LOAD", true)
       try {
-        commit("IS_LOAD", true)
         const data = await loadWeather(payload)
 
         commit("ADD_WEATHER", data)
@@ -74,12 +74,13 @@ export default createStore({
       }
     },
     async loadWeatherInfoDaily({ commit }, payload) {
+      commit("IS_LOAD", true)
       try {
-        commit("IS_LOAD", true)
         const data = await loadWeatherInfoDaily(payload)
 
         commit("WEATHER_INFO_DAILY", data.daily)
         commit("CURRENT_WEATHER", data.current)
+        commit("HOURLY_INFO", data.hourly)
         commit("IS_LOAD", false)
       } catch (error) {
         console.log(error)

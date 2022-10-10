@@ -1,5 +1,5 @@
 <template>
-  <li v-if="!isLoad" @click="showHandler" class="list__item item__list">
+  <li v-if="!isLoad" class="list__item item__list">
     <div class="item__name">
       {{ weekday }}
     </div>
@@ -13,14 +13,20 @@
     <div class="item__min_temp">{{ tempMin }}&deg;</div>
     <div class="item__desc">{{ description }}</div>
   </li>
-  <div v-else class="list__item item__list placeholder"></div>
+  <div v-else class="prelodaer__block">
+    <Preloader />
+  </div>
 </template>
 
 <script>
-import { formatWeekly } from "@/utils/system.js"
+import { formatWeekly, generateURLIcon } from "@/utils/system.js"
+import { translete } from "@/utils/constants.js"
+
+import Preloader from "@/components/preloader/Preloader"
 
 export default {
   name: "Weather Detail Card",
+  components: { Preloader },
   props: {
     item: {
       type: Object,
@@ -32,7 +38,7 @@ export default {
       return this.$store.getters.getLoadStatus
     },
     icon() {
-      return `http://openweathermap.org/img/wn/${this.item.weather[0].icon}@2x.png`
+      return generateURLIcon(this.item)
     },
     tempMax() {
       return Math.floor(this.item.temp.max)
@@ -48,14 +54,6 @@ export default {
     },
     date() {
       return formatWeekly(this.item.dt, { day: "2-digit", month: "short" })
-    },
-  },
-  beforeUnmount() {
-    this.$store.commit("ACTIVE_WEATHER", {})
-  },
-  methods: {
-    showHandler() {
-      this.$store.commit("ACTIVE_WEATHER", this.item)
     },
   },
 }

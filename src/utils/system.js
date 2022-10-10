@@ -1,9 +1,12 @@
-import store from "@/store"
 import { loadWeather } from "@/utils/api.js"
+import { icons } from "@/utils/constants.js"
+
+import store from "@/store"
 
 const LOCAL_KEY = "weathers"
 
 async function init() {
+  store.commit("IS_LOAD", true)
   const local = JSON.parse(localStorage.getItem(LOCAL_KEY) || "[]")
   const weathers = []
 
@@ -16,15 +19,12 @@ async function init() {
 
   localStorage.setItem(LOCAL_KEY, JSON.stringify(weathers))
   store.commit("INIT_WEATHERS", weathers)
+  store.commit("IS_LOAD", false)
 }
 
 function averageValue(obj) {
   const temps = Object.values(obj)
-  let sum = 0
-
-  temps.forEach(item => {
-    sum += item
-  })
+  let sum = temps.reduce((acc, value) => acc + value, 0)
 
   const avValue = sum / temps.length
 
@@ -47,4 +47,10 @@ function formatWeekly(dt, options) {
   return new Date(dt * 1000).toLocaleString("ru-RU", options)
 }
 
-export { init, averageValue, formatWeekly }
+function generateURLIcon(item = {}) {
+  const { icon } = item.weather[0]
+
+  return require(`@/assets/images/icons/${icons[icon]}.svg`)
+}
+
+export { init, averageValue, formatWeekly, generateURLIcon }

@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import { generateURLIcon } from "@/utils/system.js"
+
 export default {
   name: "Weather Ticket",
   props: {
@@ -51,7 +53,7 @@ export default {
       return Math.floor(this.weather.main.temp)
     },
     icon() {
-      return `http://openweathermap.org/img/wn/${this.weather.weather[0].icon}@2x.png`
+      return generateURLIcon(this.weather)
     },
   },
   methods: {

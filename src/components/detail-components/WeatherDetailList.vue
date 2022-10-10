@@ -1,6 +1,6 @@
 <template>
   <div class="cards">
-    <ul class="cards__list list__cards">
+    <ul class="cards__list list__cards weather__block">
       <weather-detail-card
         v-for="item in weatherInfo"
         :key="item.dt"

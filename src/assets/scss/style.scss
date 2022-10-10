@@ -13,6 +13,10 @@ body {
   color: $black;
 
   background-color: $white;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
 
 // Blocks
@@ -24,3 +28,4 @@ body {
 @import "blocks/list";
 @import "blocks/item";
 @import "blocks/weather-grid";
+@import "blocks/helpers";
